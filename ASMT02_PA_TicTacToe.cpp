@@ -1,19 +1,18 @@
 /****************************************************************
-*
-* File: [ASMT02_PA_TicTacToe.cpp]
-* By: [Henry Meier]
-* Date: [10/22/18]
-*
-* Description: [Cool TicTacToe game!]
-*
-****************************************************************/
-#include <iostream> 
-using namespace std;
+ *
+ * File: [ASMT02_PA_TicTacToe.cpp]
+ * By: [Henry Meier]
+ * Date: [10/23/18]
+ *
+ * Description: [Cool TicTacToe game!]
+ *
+ ****************************************************************/
+#include <iostream>
+  using namespace std;
 
 bool isWon(char a, char board[][3]) { //winning is a boolian condition
 
-
-int n = 3;
+  int n = 3;
   /*
 
   reference
@@ -36,28 +35,22 @@ int n = 3;
   */
 
   for (int i = 0; i < 3; i++) { //sweep
-
-    if (board[0][0] == board[1][1] && //diag
-        board[1][1] == board[2][2] &&  
-        board[0][0] != ' ') 
-        return(true);
-      
-     if (board[0][2] == board[1][1] && //diag
-        board[1][1] == board[2][0] && 
-         board[0][2] != ' ') 
-        return(true); 
-
-     if (board[i][0] == board[i][1] && //row
-            board[i][1] == board[i][2] &&  
-            board[i][0] != ' ') 
-            return (true); 
-
-   if (board[0][i] == board[1][i] && //col
-            board[1][i] == board[2][i] &&  
-            board[0][i] != ' ') 
-            return (true); 
-
-    
+    if (board[i][0] == a && board[i][1] == a && board[i][2] == a)
+      return true; //1
+    if (board[i][3] == a && board[i][4] == a && board[i][5] == a)
+      return true; //2
+    if (board[i][6] == a && board[i][7] == a && board[i][8] == a)
+      return true; //3
+    if (board[i][0] == a && board[i][3] == a && board[i][6] == a)
+      return true; //4
+    if (board[i][1] == a && board[i][4] == a && board[i][7] == a)
+      return true; //5
+    if (board[i][2] == a && board[i][5] == a && board[i][8] == a)
+      return true; //6
+    if (board[i][0] == a && board[i][4] == a && board[i][8] == a)
+      return true; //7
+    if (board[i][6] == a && board[i][4] == a && board[i][2] == a)
+      return true; //8
     return false;
 
   }
@@ -101,12 +94,27 @@ void displayBoard(char board[][3]) {
 void makeAMove(char board[][3], char a) {
 
   while (true) {
+    cout << "Enter '-1' to quit game" << endl;
     cout << "Enter a row (0, 1, 2) for player " << a << "   : ";
     int x; // int for player row
     cin >> x;
+    if (x == -1) {
+
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+    }
+
+    cout << "Enter '-1' to quit game" << endl;
     cout << "Enter a column (0, 1, 2) for player " << a << ": ";
     int y; // int for player column
     cin >> y;
+    if (y == -1) {
+
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+
+    }
+
     if (x < 0 || x > 2 || y < 0 || y > 2) {
       //if row less then 0 or more then 2
       //or
@@ -117,10 +125,11 @@ void makeAMove(char board[][3], char a) {
 
         board[x][y] = a; //available
 
-        break;  //break herwe
+        break; //break here
       } else { //else
 
-        cout << "Invalid Move\n"; //invalid due to occupation
+        cout << "Invalid Move\n"; //invalid due to occupation 
+
       }
     }
   }
@@ -147,29 +156,29 @@ int main() {
       ' '
     }
   };
-	cout << "                                                               " << endl;
-	cout << "|-------------------------------------------------------------|" << endl;
-	cout << "|.-----. _            .-----.                .-----.          |" << endl;
-	cout << "|`-. .-':_;           `-. .-'                `-. .-'          |" << endl;
-	cout << "|  : :  .-. .--.  _____ : : .--.   .--.  _____ : : .--.  .--. |" << endl;
-	cout << "|  : :  : :'  ..':_____:: :' .; ; '  ..':_____:: :' .; :' '_.'|" << endl;
-	cout << "|  :_;  :_;`.__.'       :_;`.__,_;`.__.'       :_;`.__.'`.__.'|" << endl;
-	cout << "|-------------------------------------------------------------|" << endl;
-	cout << "                                                               " << endl;
+  cout << "                                                               " << endl;
+  cout << "|-------------------------------------------------------------|" << endl;
+  cout << "|.-----. _            .-----.                .-----.          |" << endl;
+  cout << "|`-. .-':_;           `-. .-'                `-. .-'          |" << endl;
+  cout << "|  : :  .-. .--.  _____ : : .--.   .--.  _____ : : .--.  .--. |" << endl;
+  cout << "|  : :  : :'  ..':_____:: :' .; ; '  ..':_____:: :' .; :' '_.'|" << endl;
+  cout << "|  :_;  :_;`.__.'       :_;`.__,_;`.__.'       :_;`.__.'`.__.'|" << endl;
+  cout << "|-------------------------------------------------------------|" << endl;
 
   displayBoard(board);
-
-
 
   while (true) {
     // The first player makes a move
     makeAMove(board, 'X');
     displayBoard(board);
     if (isWon('X', board)) {
-      cout << "X player won" << endl;
+      cout << "X player won!" << endl;
+      cout << "Thanks for playing!" << endl;
       exit(0);
+
     } else if (isDraw(board)) {
-      cout << "No winner" << endl;
+      cout << "No winner!" << endl;
+      cout << "Thanks for playing!" << endl;
       exit(0);
     }
 
@@ -178,10 +187,12 @@ int main() {
     displayBoard(board);
 
     if (isWon('O', board)) {
-      cout << "O player won" << endl;
+      cout << "O player won!" << endl;
+      cout << "Thanks for playing!" << endl;
       exit(0);
     } else if (isDraw(board)) {
-      cout << "No winner" << endl;
+      cout << "No winner!" << endl;
+      cout << "Thanks for playing!" << endl;
       exit(0);
     }
   }
