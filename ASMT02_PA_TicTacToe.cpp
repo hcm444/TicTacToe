@@ -12,6 +12,8 @@ using namespace std;
 
 bool isWon(char a, char board[][3]) { //winning is a boolian condition
 
+
+int n = 3;
   /*
 
   reference
@@ -35,30 +37,27 @@ bool isWon(char a, char board[][3]) { //winning is a boolian condition
 
   for (int i = 0; i < 3; i++) { //sweep
 
-    if (board[i][0] == a && board[i][1] == a && board[i][2] == a)
-      return true; //1
+    if (board[0][0] == board[1][1] && //diag
+        board[1][1] == board[2][2] &&  
+        board[0][0] != ' ') 
+        return(true);
+      
+     if (board[0][2] == board[1][1] && //diag
+        board[1][1] == board[2][0] && 
+         board[0][2] != ' ') 
+        return(true); 
 
-    if (board[i][3] == a && board[i][4] == a && board[i][5] == a)
-      return true; //2
+     if (board[i][0] == board[i][1] && //row
+            board[i][1] == board[i][2] &&  
+            board[i][0] != ' ') 
+            return (true); 
 
-    if (board[i][6] == a && board[i][7] == a && board[i][8] == a)
-      return true; //3
+   if (board[0][i] == board[1][i] && //col
+            board[1][i] == board[2][i] &&  
+            board[0][i] != ' ') 
+            return (true); 
 
-    if (board[i][0] == a && board[i][3] == a && board[i][6] == a)
-      return true; //4
-
-    if (board[i][1] == a && board[i][4] == a && board[i][7] == a)
-      return true; //5
-
-    if (board[i][2] == a && board[i][5] == a && board[i][8] == a)
-      return true; //6
-
-    if (board[i][0] == a && board[i][4] == a && board[i][8] == a)
-      return true; //7
-
-    if (board[i][6] == a && board[i][4] == a && board[i][2] == a)
-      return true; //8
-
+    
     return false;
 
   }
