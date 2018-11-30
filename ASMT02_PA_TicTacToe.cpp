@@ -8,6 +8,8 @@
  *
  ****************************************************************/
 #include <iostream>
+#include <stdio.h>
+#include <cstdlib>
   using namespace std;
 
 bool isWon(char a, char board[][3]) { //winning is a boolian condition
