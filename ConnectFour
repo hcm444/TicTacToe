@@ -1,0 +1,156 @@
+#include <iostream>
+#include <stdio.h>
+#include <cstdlib>
+using namespace std;
+char place[6][7];
+//connect four, a fun game
+bool isWon(char a, char board[][7]) { //winning is a boolian condition
+
+//win logic here
+
+
+
+
+}
+
+bool isDraw(char board[][7]) {
+
+  int z = 0; //define
+  for (int i = 0; i < 7; i++) { //row
+
+    for (int j = 0; j < 6; j++) { //column
+      if (board[i][j] == 'X' || board[i][j] == 'O')
+        z++;
+    }
+  }
+  if (z != 42) //if z is not equal to 9
+    return false; //not a draw
+  if (!isWon('X', board) && !isWon('O', board)) //if X didn't win and O didn't
+    //it's a draw, draw =true
+    return true;
+}
+
+
+
+
+
+void makeAMove(char board[][7], char a) {
+
+  while (true) {
+    cout << "Enter '-1' to quit game" << endl;
+    cout << "Enter a row (0, 1, 2, 3, 4, 5, 6, 7) for player " << a << "   : ";
+    int x; // int for player row
+    cin >> x;
+    if (x == -1) {
+
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+    }
+
+    if (x < 0 || x > 7) {
+      //if row less then 0 or more then 7
+      //or
+      //if column less then 0 or more then 2
+      cout << "Invalid Move\n"; //invalid due to data
+
+      }
+    }
+  }
+
+
+void displayBoard(char board[][7]) {
+cout<<" 1   2   3   4   5   6   7\n";
+
+  cout << "------------------------- \n";
+  for (int i = 0; i < 6; i++) { // vertical lines
+    cout << "| "; //this took me a while to figure out
+    //slash space
+    for (int j = 0; j < 7; j++) { //horizontal
+      cout << board[i][j] << " | "; //it just works
+      //space slash space
+    }
+
+    cout << endl;
+    cout << "-------------------------\n";
+
+  }
+}
+
+int main()
+{
+    cout << "Connect Four!" << endl;
+
+
+    char board[][7] = {
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    },
+    {
+      ' ',
+      ' ',
+      ' '
+    }
+  };
+
+ displayBoard(board);
+
+    while (true) {
+    // The first player makes a move
+    makeAMove(board, 'X');
+    displayBoard(board);
+    if (isWon('X', board)) {
+      cout << "X player won!" << endl;
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+
+    } else if (isDraw(board)) {
+      cout << "No winner!" << endl;
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+    }
+
+    // The second player makes a move
+    makeAMove(board, 'O');
+    displayBoard(board);
+
+    if (isWon('O', board)) {
+      cout << "O player won!" << endl;
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+    } else if (isDraw(board)) {
+      cout << "No winner!" << endl;
+      cout << "Thanks for playing!" << endl;
+      exit(0);
+    }
+  }
+
+  return 0;
+
+}
