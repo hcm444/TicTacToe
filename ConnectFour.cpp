@@ -17,14 +17,15 @@ int main(){
 	char player = 43;//start as player 2 will change back 2 player 1
 	while(!gamewon){//will stop when game is won, ! means NOT makes the oppisite be checked
 		if(hold2 != -1){//check if there was a error in the last drop
-			if(player == 43){//if player 2 lasted dropped a piece so its player 1s turn
+			if(player == 90){//if player 2 lasted dropped a piece so its player 1s turn
 				cout<<"player 1 drop where?";
 				player = 37;//char of players piece1
 			}
 			else{
 				cout<<"player 2 drop where?";
-				player = 43;//char of player piece
+				player = 90;//char of player piece
 			}
+
 		}
 		while(true){//will run untill 'break;'
 			if(charsPlaced == 42) break;//if draw
@@ -56,7 +57,7 @@ int main(){
 		system("pause");
 		return 0;
 	}
-	if(player == 43)//if won by player 2
+	if(player == 42)//if won by player 2
 		cout<<"gamewon by : player 2\n";
 	else cout<<"gamewon by : player 1\n";//Else won by player 1
 	return 0;//Exit application
@@ -66,10 +67,15 @@ void display(){
 	for(int a = 0; a<= 5; a++)
 	{
 		for(int b =0; b <= 6; b++) cout<< "+" << "---" << "+" <<" ";
+
 		cout<<'\n';
+
 		for(int b =0; b <= 6; b++) cout<< "| " <<place[a][b]<< " |" <<" ";
+
 		cout<<'\n';
+
 		for(int b =0; b <= 6; b++) cout<< "+" << "---" << "+" <<" ";
+
 		cout<<'\n';
 	}
 }
